@@ -2,6 +2,30 @@
   text-align: center;
 }
 
+div {
+  box-sizing: border-box;
+}
+
+.nav-black button {
+  height: 30px;
+  margin: 0 5px;
+}
+
+.nav-black {
+  display: flex;
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 20px;
+  align-items: center;
+}
+
+.list {
+  text-align: left;
+  padding-left: 20px;
+  border-bottom: 1px solid grey;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
