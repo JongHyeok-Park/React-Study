@@ -5,6 +5,7 @@ function App() {
     const [titles, setTitles] = useState(['남자 코트 추천', '파이썬 독학', '리액트 공부']);
     const [likes, setLikes] = useState([0, 0, 0]);
     const [modal, setModal] = useState([false, 0]);
+    const [inputVal, setInputVal] = useState("");
 
     return (
         <div className="App">
@@ -48,17 +49,42 @@ function App() {
                                 let copyModal = [!modal[0], i]
                                 setModal(copyModal);
                                 }}>{ title } 
-                                <span onClick={() => {
+                                <span onClick={(e) => {
+                                    e.stopPropagation();
                                     let copyLikes = [...likes];
                                     copyLikes[i]++;
                                     setLikes(copyLikes);
                                 }}>👍 {likes[i]}</span>
+                                <button onClick={() => {
+                                    let copyTitles = [...titles];
+                                    copyTitles.splice(i, 1);
+
+                                    let copyLikes = [...likes];
+                                    copyLikes.splice(i, 1);
+                                    setTitles(copyTitles);
+                                    setLikes(copyLikes);
+                                }}>삭제</button>
                             </h4>
                             <p>2월 17일 작성</p>
                         </div>
                     )
                 })
             }
+
+            <input onChange={(e) => {
+                setInputVal(e.target.value);
+                console.log(inputVal);
+            }}/>
+            <button onClick={() => {
+                let copyTitles = [...titles];
+                copyTitles.push(inputVal);
+
+                let copyLikes = [...likes];
+                copyLikes.push(0);
+
+                setTitles(copyTitles);
+                setLikes(copyLikes);
+            }}>글 추가</button>
 
             {
                 modal[0] ? <Modal titles = {titles} setTitles = {setTitles} index = {modal[1]}/> : null
